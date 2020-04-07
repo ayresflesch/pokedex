@@ -1,12 +1,15 @@
 import styled from "styled-components"
 
 export const CardContainer = styled.div`
+  min-height: 176px; 
   background: white;
   border-radius: 10px;
   padding: 16px;
   text-align: center;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
 
   &:hover {
     box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.25);
@@ -15,10 +18,12 @@ export const CardContainer = styled.div`
 
 export const Number = styled.span`
   color: var(--grey-500);
+  margin-bottom: 16px
 `
 
 export const ImageContainer = styled.div`
-  height: 99px;
+  min-height: 99px;
+  flex: 1;
 `
 
 export const Title = styled.div`
@@ -66,4 +71,11 @@ export const Type = styled.div`
   &:nth-last-child(1):nth-child(odd) {
     grid-column: 2 / span 2;
   }
+`
+
+export const LoadingIconContainer = styled.div`
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
