@@ -1,23 +1,29 @@
 import React, { useState, useEffect } from "react"
+import LoadingIcon from "../../components/LoadingIcon"
+import Filters from "./components/Filters"
 import PokemonCard from "./components/PokemonCard/"
 import InfiniteScroll from "react-infinite-scroller"
-import { FaSpinner } from "react-icons/fa"
-
 import {
   PokemonsContainers,
   LoadingIconContainer
 } from "./styles"
+
+const URL = "https://pokeapi.co/api/v2/pokemon"
 
 const ListPokemons = () => {
   const [pagination, setPagination] = useState(null)
   const [pokemons, setPokemons] = useState([])
   const [isFetching, setIsFetching] = useState(false)
 
-  const [fetchPokemonsUrl, setFetchPokemonsUrl] = useState(
-    "https://pokeapi.co/api/v2/pokemon"
-  )
+  const [typeOptionSelected, setTypeOptionSelected] = useState(null)
+
+  const [fetchPokemonsUrl, setFetchPokemonsUrl] = useState(URL)
 
   useEffect(() => {
+    if (!fetchPokemonsUrl) {
+      return
+    }
+
     setIsFetching(true)
 
     const fetchPokemons = () => {
@@ -32,8 +38,31 @@ const ListPokemons = () => {
     fetchPokemons()
   }, [fetchPokemonsUrl])
 
+  useEffect(() => {
+    if (!typeOptionSelected) {
+      setPokemons([])
+      setFetchPokemonsUrl(URL)
+      return
+    }
+
+    setFetchPokemonsUrl(null)
+
+    fetch(typeOptionSelected.url)
+      .then((response) => response.json())
+      .then((response) => {
+        const pokemons = response.pokemon.map(pokemon => {
+          const { name, url } = pokemon.pokemon
+          return { name, url }
+        })
+
+        setPokemons([...pokemons])
+      })
+
+  }, [typeOptionSelected])
+
   const loadMorePokemons = () => {
-    if (isFetching) {
+    const shouldNotLoadMore = isFetching || typeOptionSelected
+    if (shouldNotLoadMore) {
       return
     }
 
@@ -41,31 +70,40 @@ const ListPokemons = () => {
   }
 
   const hasMoreItemsToLoad = () => {
-    // return false
+    if (typeOptionSelected) {
+      return false
+    }
+
     return !!pagination.next
   }
 
   return (
     <>
-      {pokemons.length > 0 && (
-        <InfiniteScroll
-          pageStart={0}
-          loadMore={loadMorePokemons}
-          hasMore={hasMoreItemsToLoad()}
-        >
-          <PokemonsContainers>
-            {pokemons.map((pokemon) => (
-              <PokemonCard key={pokemon.name} url={pokemon.url} />
-            ))}
-          </PokemonsContainers>
-          {
-            isFetching &&
-            <LoadingIconContainer>
-              <FaSpinner />
-            </LoadingIconContainer>
-          }
-        </InfiniteScroll>
-      )}
+      <Filters
+        typeOptionSelected={typeOptionSelected}
+        setTypeOptionSelected={setTypeOptionSelected} />
+
+      {
+        pokemons.length > 0 && (
+          <InfiniteScroll
+            pageStart={0}
+            loadMore={loadMorePokemons}
+            hasMore={hasMoreItemsToLoad()}
+          >
+            <PokemonsContainers>
+              {pokemons.map((pokemon) => (
+                <PokemonCard key={pokemon.name} url={pokemon.url} />
+              ))}
+            </PokemonsContainers>
+            {
+              isFetching &&
+              <LoadingIconContainer>
+                <LoadingIcon />
+              </LoadingIconContainer>
+            }
+          </InfiniteScroll>
+        )
+      }
     </>
   )
 }

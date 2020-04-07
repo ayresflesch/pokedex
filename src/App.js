@@ -1,7 +1,7 @@
-import React from 'react';
-import { Global } from "./styles/global";
+import React from 'react'
+import { Global } from "./styles/global"
 
-import ListPokemons from "./pages/ListPokemons";
+import ListPokemons from "./pages/ListPokemons"
 
 function App() {
   return (
@@ -9,7 +9,7 @@ function App() {
       <Global />
       <ListPokemons />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
