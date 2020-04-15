@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from "react"
+import PropTypes from "prop-types"
+import { Link } from "react-router-dom"
+
 import LoadingIcon from "../../../../components/LoadingIcon"
 import { capitalize } from "../../../../helpers/stringHelper"
-import PropTypes from "prop-types"
 
 import {
   CardContainer,
   Title,
-  TypesContainer,
-  Type,
   Number,
   ImageContainer,
   LoadingIconContainer
 } from "./styles"
+import PokemonTypes from "../../../../components/PokemonTypes"
 
 const PokemonCard = ({ url }) => {
+
   const [pokemon, setPokemon] = useState(null)
 
   useEffect(() => {
@@ -22,16 +24,12 @@ const PokemonCard = ({ url }) => {
       .then((data) => setPokemon(data))
   }, [url])
 
-  const typesSortedBySlot = () => {
-    return pokemon.types.sort((a, b) => a.slot - b.slot)
-  }
-
   return (
     <>
       <CardContainer>
         {
           pokemon ?
-            <>
+            <Link to={`/pokemon/${pokemon.id}`}>
               <Number>#{pokemon.id}</Number>
               <ImageContainer>
                 {
@@ -40,20 +38,12 @@ const PokemonCard = ({ url }) => {
                 }
               </ImageContainer>
               <Title>{capitalize(pokemon.name)}</Title>
-              <TypesContainer>
-                {
-                  typesSortedBySlot().map((type) => (
-                    <Type color={type.type.name} key={type.slot}>
-                      {capitalize(type.type.name)}
-                    </Type>
-                  ))
-                }
-              </TypesContainer>
-            </> :
+              <PokemonTypes types={pokemon.types} />
+            </Link>
+            :
             <LoadingIconContainer>
               <LoadingIcon />
             </LoadingIconContainer>
-
         }
       </CardContainer>
     </>
