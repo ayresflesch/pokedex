@@ -31,7 +31,7 @@ const ListPokemons = () => {
         .then((response) => response.json())
         .then((response) => {
           setPagination(response)
-          setPokemons([...pokemons, ...response.results])
+          setPokemons(pokemons => [...pokemons, ...response.results])
           setIsFetching(false)
         })
     }
