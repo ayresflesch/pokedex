@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from "prop-types"
 
-import { capitalize } from "../../../../helpers/stringHelper"
-
 import { PokemonContainer, Name, Description } from './styles'
+import PokemonEvolvesTo from '../../../../dataObjects/PokemonEvolvesTo'
 
 const PokemonEvolution = ({ pokemonEvolutionNode }) => {
 
@@ -11,7 +10,7 @@ const PokemonEvolution = ({ pokemonEvolutionNode }) => {
   const [pokemon, setPokemon] = useState(null)
 
   useEffect(() => {
-    fetch(pokemonEvolutionNode.url)
+    fetch(pokemonEvolutionNode.getUrl())
       .then((response) => response.json())
       .then(pokemonSpecies => {
         setPokemonSpecies(pokemonSpecies)
@@ -52,11 +51,11 @@ const PokemonEvolution = ({ pokemonEvolutionNode }) => {
           </Name>
           <Description>
             {
-              pokemonEvolutionNode.minLevel &&
-              <span>
-                {capitalize(pokemonEvolutionNode.evolvesFrom)} reaches level {pokemonEvolutionNode.minLevel}
-              </span>
+              pokemonEvolutionNode.getEvolutionTexts().map((text, index) => (
+                <div key={index}>{text}</div>
+              ))
             }
+
           </Description>
         </>
       }
@@ -65,7 +64,7 @@ const PokemonEvolution = ({ pokemonEvolutionNode }) => {
 }
 
 PokemonEvolution.propTypes = {
-  pokemonEvolutionNode: PropTypes.object.isRequired,
+  pokemonEvolutionNode: PropTypes.instanceOf(PokemonEvolvesTo).isRequired,
 }
 
 export default PokemonEvolution
