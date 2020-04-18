@@ -37,8 +37,6 @@ class PokemonEvolvesTo {
   }
 
   _getRelativePhysicalStats(relativePhysicalStats) {
-    console.log(relativePhysicalStats)
-
     switch (relativePhysicalStats) {
       case 1:
         return 'Attack greater than Defence'
@@ -56,7 +54,7 @@ class PokemonEvolvesTo {
       if (detail.trigger.name === 'level-up') {
         if (!detail.time_of_day && !detail.location && !detail.gender && !detail.min_level && !detail.known_move_type
           && !detail.party_species && !detail.min_beauty && !detail.party_type) {
-          return
+          return null
         }
 
         if (detail.min_happiness || detail.min_affection) {
@@ -118,6 +116,8 @@ class PokemonEvolvesTo {
 
         return `${capitalize(this.evolvesFrom)} reaches level ${detail.min_level}`
       }
+
+      return null
     })
 
     return evolutionTexts.filter(text => !!text)

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import PropTypes from "prop-types"
 import StatsRadar from "./components/StatsRadar"
 import { capitalize } from "../../helpers/stringHelper"
@@ -40,35 +40,12 @@ const Pokemon = ({ match: { params } }) => {
 
   }, [pokemon])
 
-  useEffect(() => {
-    if (!evolutionChainUrl) {
-      return
-    }
-
-    fetch(evolutionChainUrl)
-      .then((response) => response.json())
-      .then(({ chain }) => {
-        const evolutionChain = traverseEvolutionChain(chain)
-
-        console.log(evolutionChain)
-
-
-        setEvolutionChain(evolutionChain)
-      })
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [evolutionChainUrl])
-
-
-  const traverseEvolutionChain = evolutionChain => {
-
+  const traverseEvolutionChain = useCallback(evolutionChain => {
     const evolutionChainFormatted = new PokemonEvolvesTo(evolutionChain)
 
-    const onlyLastEvolution = (
-      evolutionChainFormatted.getEvolvesTo().length ?
-        [] :
-        [[evolutionChainFormatted]]
-    )
+    const onlyLastEvolution = evolutionChainFormatted.getEvolvesTo().length ?
+      [] :
+      [[evolutionChainFormatted]]
 
     return onlyLastEvolution.concat(
       ...evolutionChainFormatted.getEvolvesTo().map(nextEvolution => {
@@ -80,7 +57,21 @@ const Pokemon = ({ match: { params } }) => {
         )
       })
     )
-  }
+  }, [])
+
+  useEffect(() => {
+    if (!evolutionChainUrl) {
+      return
+    }
+
+    fetch(evolutionChainUrl)
+      .then((response) => response.json())
+      .then(({ chain }) => {
+        const evolutionChain = traverseEvolutionChain(chain)
+        setEvolutionChain(evolutionChain)
+      })
+  }, [evolutionChainUrl, traverseEvolutionChain])
+
 
   const statsData = () => {
     return pokemon.stats.map(({ base_stat, stat: { name } }) => {
