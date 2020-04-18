@@ -11,4 +11,5 @@ export const Name = styled.div`
 
 export const Description = styled.div`
   color: var(--grey-700);
+  max-width: 250px;
 `

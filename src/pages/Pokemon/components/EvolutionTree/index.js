@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import PropTypes from "prop-types"
 import { IoIosArrowForward } from "react-icons/io"
 import PokemonEvolution from '../PokemonEvolution'
@@ -18,15 +18,15 @@ const EvolutionTree = ({ evolutionChain }) => {
           <EvolutionRow key={index}>
             {
               chain.map((pokemon, index) => (
-                <>
-                  <PokemonEvolution key={index} pokemonEvolutionNode={pokemon} />
+                <Fragment key={index}>
+                  <PokemonEvolution pokemonEvolutionNode={pokemon} />
                   {
                     isLastPokemon(index, chain) &&
                     <IconContainer>
                       <IoIosArrowForward />
                     </IconContainer>
                   }
-                </>
+                </Fragment>
               ))
             }
           </EvolutionRow>
