@@ -27,7 +27,7 @@ const Pokemon = ({ match: { params } }) => {
     fetch(`https://pokeapi.co/api/v2/pokemon/${params.id}`)
       .then((response) => response.json())
       .then((data) => setPokemon(data))
-  }, [])
+  }, [params.id])
 
   useEffect(() => {
     if (!pokemon) {
@@ -56,6 +56,7 @@ const Pokemon = ({ match: { params } }) => {
         setEvolutionChain(evolutionChain)
       })
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [evolutionChainUrl])
 
 
