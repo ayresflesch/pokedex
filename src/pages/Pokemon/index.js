@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from "prop-types"
-
 import StatsRadar from "./components/StatsRadar"
-
 import { capitalize } from "../../helpers/stringHelper"
 import {
   PokemonContainer,
@@ -16,6 +14,8 @@ import {
 } from "./styles"
 import PokemonTypes from '../../components/PokemonTypes'
 import EvolutionTree from './components/EvolutionTree'
+import PokemonEvolvesTo from "../../dataObjects/PokemonEvolvesTo"
+
 
 const Pokemon = ({ match: { params } }) => {
 
@@ -49,6 +49,10 @@ const Pokemon = ({ match: { params } }) => {
       .then((response) => response.json())
       .then(({ chain }) => {
         const evolutionChain = traverseEvolutionChain(chain)
+
+        console.log(evolutionChain)
+
+
         setEvolutionChain(evolutionChain)
       })
 
@@ -57,27 +61,18 @@ const Pokemon = ({ match: { params } }) => {
 
   const traverseEvolutionChain = evolutionChain => {
 
-    const { evolution_details, evolves_to, evolvesFrom, species: { name, url } } = evolutionChain
-
-    const evolutionChainFormatted = { name, url, evolvesTo: evolves_to, evolvesFrom }
-
-    evolution_details.forEach(detail => {
-      if (detail.trigger.name === 'level-up') {
-        evolutionChainFormatted.trigger = detail.trigger.name
-        evolutionChainFormatted.minLevel = detail.min_level
-      }
-    })
+    const evolutionChainFormatted = new PokemonEvolvesTo(evolutionChain)
 
     const onlyLastEvolution = (
-      evolutionChainFormatted.evolvesTo.length ?
+      evolutionChainFormatted.getEvolvesTo().length ?
         [] :
         [[evolutionChainFormatted]]
     )
 
     return onlyLastEvolution.concat(
-      ...evolutionChainFormatted.evolvesTo.map(nextEvolution => {
+      ...evolutionChainFormatted.getEvolvesTo().map(nextEvolution => {
 
-        nextEvolution = { ...nextEvolution, evolvesFrom: evolutionChainFormatted.name }
+        nextEvolution = { ...nextEvolution, evolvesFrom: evolutionChainFormatted.getName() }
 
         return traverseEvolutionChain(nextEvolution).map(arr =>
           [evolutionChainFormatted].concat(arr)
@@ -128,7 +123,11 @@ const Pokemon = ({ match: { params } }) => {
           <Section>
             Evoluções
           </Section>
-          <EvolutionTree evolutionChain={evolutionChain} />
+
+          {
+            evolutionChain &&
+            <EvolutionTree evolutionChain={evolutionChain} />
+          }
         </>
       }
 
