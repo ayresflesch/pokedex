@@ -57,16 +57,15 @@ class PokemonEvolvesTo {
       }
 
       if (detail.trigger.name === 'trade') {
+        return this._getTradeEvolutionText(detail)
+      }
 
-        if (detail.held_item) {
-          return `Trade ${capitalize(this.evolvesFrom)} holding ${a(capitalize(detail.held_item.name))}`
-        }
+      if (detail.trigger.name === 'use-item') {
+        return this._getUseItemEvolutionText(detail)
+      }
 
-        if (detail.trade_species) {
-          return `Trade ${capitalize(this.evolvesFrom)} with ${a(capitalize(detail.trade_species.name))}`
-        }
-
-        return `Trade ${capitalize(this.evolvesFrom)}`
+      if (detail.trigger.name === 'shed') {
+        return this._getShedEvolutionText()
       }
 
       return null
@@ -141,6 +140,30 @@ class PokemonEvolvesTo {
     return `${capitalize(this.evolvesFrom)} reaches level ${detail.min_level}`
   }
 
+  _getTradeEvolutionText(detail) {
+    if (detail.held_item) {
+      return `Trade ${capitalize(this.evolvesFrom)} holding ${a(capitalize(detail.held_item.name))}`
+    }
+
+    if (detail.trade_species) {
+      return `Trade ${capitalize(this.evolvesFrom)} with ${a(capitalize(detail.trade_species.name))}`
+    }
+
+    return `Trade ${capitalize(this.evolvesFrom)}`
+  }
+
+  _getUseItemEvolutionText(detail) {
+
+    if (detail.gender) {
+      return `Use ${a(capitalize(detail.item.name))} on ${a(this._getGender(detail.gender))} ${capitalize(this.evolvesFrom)}`
+    }
+
+    return `Use ${a(capitalize(detail.item.name))} on ${capitalize(this.evolvesFrom)}`
+  }
+
+  _getShedEvolutionText() {
+    return `${capitalize(this.evolvesFrom)} reaches level 20 and you have a spare slot in your party and a Poké Ball in your bag`
+  }
 
 
 }
