@@ -14,33 +14,45 @@ export const PokemonContainer = styled.div`
 `
 
 export const Title = styled.div`
-  font-size: 20px;
+  font-size: 36px;
   font-weight: 500;
   color: var(--grey-800);
   text-align: center;
+  line-height: 1;
   margin-bottom: 4px;
 `
 
 export const Number = styled.span`
   color: var(--grey-600);
+  font-size: 24px;
+`
+
+export const Genera = styled.div`
   font-size: 18px;
+  color: var(--grey-600);
+  margin-bottom: 8px;
 `
 
 export const ProfileContainer = styled.div`
   display: flex;
-  align-items: center;
+  // align-items: center;
   margin-bottom: 36px;
 `
 export const Profile = styled.div`
   flex: 1;
+  display: flex;
 `
 
 export const ImageContainer = styled.div`
-  text-align: center;
+    padding: 16px;
+    box-shadow: inset 0 0px 2px 1px rgb(0, 0, 0, 0.15);
+    border-radius: 100%;
+    margin-right: 16px;
 `
 export const GraphContainer = styled.div`
-  flex: 2;
-  height: 230px;
+  height: 200px;
+  max-width: 370px;
+  margin-bottom: 24px;
 `
 
 export const Section = styled.div`

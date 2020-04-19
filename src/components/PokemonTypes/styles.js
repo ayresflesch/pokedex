@@ -1,10 +1,9 @@
 import styled from "styled-components"
 
 export const TypesContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 16px;
   text-align: center;
+  display: flex;
+  justify-content: ${props => props.alignLeft ? 'left' : "center"};
 `
 
 const typesColor = {
@@ -34,9 +33,10 @@ export const Type = styled.div`
   border-radius: 5px;
   font-weight: 500;
   background: ${({ color }) => typesColor[color] || typesColor["unknown"]};
-  grid-column: span 2;
+  flex: 1;
+  max-width: 70px;
 
-  &:nth-last-child(1):nth-child(odd) {
-    grid-column: 2 / span 2;
+  &:not(:last-child) {
+    margin-right: 16px;
   }
 `

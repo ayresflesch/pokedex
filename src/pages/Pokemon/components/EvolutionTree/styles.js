@@ -4,6 +4,10 @@ export const EvolutionRow = styled.div`
   display: flex;
   justify-content: space-around;
   margin-bottom: 24px;
+
+  a { 
+    text-decoration: none;
+  }
 `
 
 export const IconContainer = styled.div`
