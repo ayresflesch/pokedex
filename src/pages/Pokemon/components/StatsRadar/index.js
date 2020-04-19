@@ -9,17 +9,17 @@ const StatsRadar = ({ data, keys }) => {
       keys={keys}
       indexBy="name"
       maxValue="auto"
-      margin={{ top: 70, right: 80, bottom: 40, left: 80 }}
+      margin={{ top: 40, right: 40, bottom: 40, left: 40 }}
       curve="linearClosed"
-      borderWidth={2}
+      borderWidth={0}
       borderColor={{ from: 'color' }}
-      gridLevels={5}
+      gridLevels={3}
       gridShape="linear"
       gridLabelOffset={24}
       enableDots={true}
-      dotSize={4}
+      dotSize={3}
       dotColor={{ theme: 'background' }}
-      dotBorderWidth={2}
+      dotBorderWidth={3}
       dotBorderColor={{ from: 'color' }}
       enableDotLabel={true}
       dotLabel="value"
@@ -31,6 +31,23 @@ const StatsRadar = ({ data, keys }) => {
       motionStiffness={90}
       motionDamping={15}
       isInteractive={false}
+      theme={
+        {
+          axis: {
+            ticks: {
+              text: {
+                fontSize: '14px',
+                fontWeight: 'bold',
+              }
+            },
+          },
+          dots: {
+            text: {
+              fontSize: 14
+            }
+          }
+        }
+      }
     />
   )
 }

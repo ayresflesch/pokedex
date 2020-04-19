@@ -12,6 +12,13 @@ class PokemonEvolvesTo {
     this.evolutionDetails = evolutionChain.evolution_details
   }
 
+  getId() {
+    const splittedUrl = this.species.url.split('/')
+    const pokemonId = splittedUrl[splittedUrl.length - 2]
+
+    return pokemonId
+  }
+
   getName() {
     return this.species.name
   }

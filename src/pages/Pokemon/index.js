@@ -10,7 +10,8 @@ import {
   ImageContainer,
   GraphContainer,
   Profile,
-  Section
+  Section,
+  Genera
 } from "./styles"
 import PokemonTypes from '../../components/PokemonTypes'
 import EvolutionTree from './components/EvolutionTree'
@@ -20,7 +21,7 @@ import PokemonEvolvesTo from "../../dataObjects/PokemonEvolvesTo"
 const Pokemon = ({ match: { params } }) => {
 
   const [pokemon, setPokemon] = useState(null)
-  const [evolutionChainUrl, setEvolutionChainUrl] = useState(null)
+  const [pokemonSpecies, setPokemonSpecies] = useState(null)
   const [evolutionChain, setEvolutionChain] = useState(null)
 
   useEffect(() => {
@@ -36,7 +37,9 @@ const Pokemon = ({ match: { params } }) => {
 
     fetch(pokemon.species.url)
       .then((response) => response.json())
-      .then(({ evolution_chain: { url } }) => setEvolutionChainUrl(url))
+      .then(pokemonSpecies => {
+        setPokemonSpecies(pokemonSpecies)
+      })
 
   }, [pokemon])
 
@@ -60,18 +63,21 @@ const Pokemon = ({ match: { params } }) => {
   }, [])
 
   useEffect(() => {
-    if (!evolutionChainUrl) {
+    if (!pokemonSpecies) {
       return
     }
 
-    fetch(evolutionChainUrl)
+    fetch(pokemonSpecies.evolution_chain.url)
       .then((response) => response.json())
       .then(({ chain }) => {
         const evolutionChain = traverseEvolutionChain(chain)
         setEvolutionChain(evolutionChain)
       })
-  }, [evolutionChainUrl, traverseEvolutionChain])
+  }, [pokemonSpecies, traverseEvolutionChain])
 
+  const genera = () => {
+    return pokemonSpecies.genera.find(genus => genus.language.name === 'en').genus
+  }
 
   const statsData = () => {
     return pokemon.stats.map(({ base_stat, stat: { name } }) => {
@@ -83,37 +89,49 @@ const Pokemon = ({ match: { params } }) => {
     <PokemonContainer>
 
       {
-        pokemon &&
+        pokemon && pokemonSpecies &&
         <>
-          <Title>
-            <Number>
-              #{pokemon.id}&nbsp;
-            </Number>
-            <span>
-              {capitalize(pokemon.name)}
-            </span>
-          </Title>
+
 
           <ProfileContainer>
-            <Profile>
-              <ImageContainer>
-                {
-                  pokemon.sprites.front_default &&
-                  <img src={pokemon.sprites.front_default} alt="Pokemon" />
-                }
-              </ImageContainer>
-              <PokemonTypes types={pokemon.types} />
-            </Profile>
-            <GraphContainer>
-              <StatsRadar
-                data={statsData()}
-                keys={['baseStat']}
-              />
-            </GraphContainer>
+            <div>
+              <Profile>
+                <ImageContainer>
+                  {
+                    pokemon.sprites.front_default &&
+                    <img src={pokemon.sprites.front_default} alt="Pokemon" />
+                  }
+                </ImageContainer>
+
+                <div>
+                  <Title>
+                    <span>
+                      {capitalize(pokemon.name)}&nbsp;
+                    </span>
+                    <Number>#{pokemon.id}</Number>
+                  </Title>
+                  <Genera>
+                    {genera()}
+                  </Genera>
+                  <PokemonTypes alignLeft types={pokemon.types} />
+                </div>
+              </Profile>
+            </div>
           </ProfileContainer>
 
           <Section>
-            Evoluções
+            Stats
+          </Section>
+
+          <GraphContainer>
+            <StatsRadar
+              data={statsData()}
+              keys={['baseStat']}
+            />
+          </GraphContainer>
+
+          <Section>
+            Evolution
           </Section>
 
           {
