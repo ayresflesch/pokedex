@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from "prop-types"
 
-import { PokemonContainer, Name, Description } from './styles'
 import PokemonEvolvesTo from '../../../../dataObjects/PokemonEvolvesTo'
+import EvolutionDisplay from '../../../../components/EvolutionDisplay'
 
-const PokemonEvolution = ({ pokemonEvolutionNode }) => {
+const Evolution = ({ pokemonEvolutionNode }) => {
 
   const [pokemonSpecies, setPokemonSpecies] = useState(null)
   const [pokemon, setPokemon] = useState(null)
@@ -36,35 +36,21 @@ const PokemonEvolution = ({ pokemonEvolutionNode }) => {
   }
 
   return (
-    <PokemonContainer>
+    <>
       {
         pokemon &&
-        <>
-          <div>
-            {
-              pokemon.sprites.front_default &&
-              <img src={pokemon.sprites.front_default} alt="Pokemon" />
-            }
-          </div>
-          <Name>
-            {pokemonsSpeciesName()}
-          </Name>
-          <Description>
-            {
-              pokemonEvolutionNode.getEvolutionTexts().map((text, index) => (
-                <div key={index}>{text}</div>
-              ))
-            }
-
-          </Description>
-        </>
+        <EvolutionDisplay
+          imageUrl={pokemon.sprites.front_default}
+          name={pokemonsSpeciesName()}
+          evolutionTexts={pokemonEvolutionNode.getEvolutionTexts()}
+        />
       }
-    </PokemonContainer>
+    </>
   )
 }
 
-PokemonEvolution.propTypes = {
+Evolution.propTypes = {
   pokemonEvolutionNode: PropTypes.instanceOf(PokemonEvolvesTo).isRequired,
 }
 
-export default PokemonEvolution
+export default Evolution
