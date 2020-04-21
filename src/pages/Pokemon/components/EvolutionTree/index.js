@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import { IoIosArrowForward } from "react-icons/io"
 import { Link } from "react-router-dom"
 
-import PokemonEvolution from '../PokemonEvolution'
+import Evolution from '../Evolution'
 import { EvolutionRow, IconContainer } from './styles'
 
 const isLastPokemon = (index, chain) => {
@@ -21,7 +21,7 @@ const EvolutionTree = ({ evolutionChain }) => {
               chain.map((pokemon, index) => (
                 <Fragment key={index}>
                   <Link to={`/pokemon/${pokemon.getId()}`}>
-                    <PokemonEvolution pokemonEvolutionNode={pokemon} />
+                    <Evolution pokemonEvolutionNode={pokemon} />
                   </Link>
                   {
                     isLastPokemon(index, chain) &&

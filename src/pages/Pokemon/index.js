@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import PropTypes from "prop-types"
-import StatsRadar from "./components/StatsRadar"
-import { capitalize } from "../../helpers/stringHelper"
 import {
   PokemonContainer,
   Title,
@@ -13,10 +11,13 @@ import {
   Section,
   Genera
 } from "./styles"
+
+import { capitalize } from "../../helpers/stringHelper"
+import StatsRadar from "./components/StatsRadar"
 import PokemonTypes from '../../components/PokemonTypes'
 import EvolutionTree from './components/EvolutionTree'
 import PokemonEvolvesTo from "../../dataObjects/PokemonEvolvesTo"
-
+import Varieties from './components/Varieties'
 
 const Pokemon = ({ match: { params } }) => {
 
@@ -85,6 +86,10 @@ const Pokemon = ({ match: { params } }) => {
     })
   }
 
+  const pokemonVarieties = () => {
+    return pokemonSpecies.varieties.filter(v => !v.is_default)
+  }
+
   return (
     <PokemonContainer>
 
@@ -138,6 +143,12 @@ const Pokemon = ({ match: { params } }) => {
             evolutionChain &&
             <EvolutionTree evolutionChain={evolutionChain} />
           }
+
+          <Section>
+            Varieties
+          </Section>
+
+          <Varieties varieties={pokemonVarieties()} />
         </>
       }
 
