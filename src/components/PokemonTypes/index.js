@@ -4,14 +4,14 @@ import { capitalize } from "../../helpers/stringHelper"
 
 import { TypesContainer, Type } from './styles'
 
-const PokemonTypes = ({ types, alignLeft }) => {
+const PokemonTypes = ({ types, alignLeft, marginBottom }) => {
 
   const typesSortedBySlot = () => {
     return types.sort((a, b) => a.slot - b.slot)
   }
 
   return (
-    <TypesContainer alignLeft={alignLeft} >
+    <TypesContainer alignLeft={alignLeft} marginBottom={marginBottom} >
       {
         typesSortedBySlot().map((type) => (
           <Type color={type.type.name} key={type.slot}>
@@ -25,7 +25,8 @@ const PokemonTypes = ({ types, alignLeft }) => {
 
 PokemonTypes.propTypes = {
   types: PropTypes.array.isRequired,
-  alignLeft: PropTypes.bool
+  alignLeft: PropTypes.bool,
+  marginBottom: PropTypes.string
 }
 
 export default PokemonTypes
