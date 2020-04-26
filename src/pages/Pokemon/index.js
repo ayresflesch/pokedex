@@ -9,7 +9,10 @@ import {
   GraphContainer,
   Profile,
   Section,
-  Genera
+  Genera,
+  HeightWeightContainer,
+  Height,
+  HeightWeightLabel
 } from "./styles"
 
 import { capitalize } from "../../helpers/stringHelper"
@@ -90,6 +93,24 @@ const Pokemon = ({ match: { params } }) => {
     return pokemonSpecies.varieties.filter(v => !v.is_default)
   }
 
+  const height = () => {
+    const height = pokemon.height / 10
+
+    return new Intl.NumberFormat("pt-BR", {
+      style: 'unit',
+      unit: "meter"
+    }).format(height)
+  }
+
+  const weight = () => {
+    const weight = pokemon.weight / 10
+
+    return new Intl.NumberFormat("pt-BR", {
+      style: 'unit',
+      unit: "kilogram"
+    }).format(weight)
+  }
+
   return (
     <PokemonContainer>
 
@@ -118,7 +139,22 @@ const Pokemon = ({ match: { params } }) => {
                   <Genera>
                     {genera()}
                   </Genera>
-                  <PokemonTypes alignLeft types={pokemon.types} />
+                  <PokemonTypes
+                    alignLeft
+                    marginBottom={'8px'}
+                    types={pokemon.types} />
+                  <HeightWeightContainer>
+                    <Height>
+                      <HeightWeightLabel>Height: </HeightWeightLabel>
+                      {height()}
+                    </Height>
+                    <div>
+                      <HeightWeightLabel>Weight: </HeightWeightLabel>
+                      {weight()}
+                    </div>
+                  </HeightWeightContainer>
+
+
                 </div>
               </Profile>
             </div>

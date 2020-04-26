@@ -17,7 +17,6 @@ export const Title = styled.div`
   font-size: 36px;
   font-weight: 500;
   color: var(--grey-800);
-  text-align: center;
   line-height: 1;
   margin-bottom: 4px;
 `
@@ -60,4 +59,17 @@ export const Section = styled.div`
   color: var(--grey-700);
   font-size: 20px;
   margin-bottom: 24px;
+`
+
+export const HeightWeightContainer = styled.div`
+  display: flex;
+  color: var(--grey-800);
+`
+
+export const HeightWeightLabel = styled.span`
+  color: var(--grey-600);
+`
+
+export const Height = styled.div`
+  margin-right: 16px;
 `

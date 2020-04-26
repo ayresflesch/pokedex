@@ -4,6 +4,7 @@ export const TypesContainer = styled.div`
   text-align: center;
   display: flex;
   justify-content: ${props => props.alignLeft ? 'left' : "center"};
+  margin-bottom: ${props => props.marginBottom ? props.marginBottom : "0px"};
 `
 
 const typesColor = {
