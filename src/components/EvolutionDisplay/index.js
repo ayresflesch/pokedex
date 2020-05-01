@@ -2,16 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { PokemonContainer, Name, Description } from './styles'
+import PokemonImage from '../PokemonImage'
 
 const EvolutionDisplay = ({ imageUrl, name, evolutionTexts }) => {
   return (
     <PokemonContainer>
-      <div>
-        {
-          imageUrl &&
-          <img src={imageUrl} alt="Pokemon" />
-        }
-      </div>
+      <PokemonImage url={imageUrl} />
       <Name>{name}</Name>
       <Description>
         {
