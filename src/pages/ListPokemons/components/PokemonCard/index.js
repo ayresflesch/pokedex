@@ -13,6 +13,7 @@ import {
   LoadingIconContainer
 } from "./styles"
 import PokemonTypes from "../../../../components/PokemonTypes"
+import PokemonImage from "../../../../components/PokemonImage"
 
 const PokemonCard = ({ url }) => {
 
@@ -32,10 +33,7 @@ const PokemonCard = ({ url }) => {
             <Link to={`/pokemon/${pokemon.id}`}>
               <Number>#{pokemon.id}</Number>
               <ImageContainer>
-                {
-                  pokemon.sprites.front_default &&
-                  <img src={pokemon.sprites.front_default} alt="Pokemon" />
-                }
+                <PokemonImage url={pokemon.sprites.front_default} />
               </ImageContainer>
               <Title>{capitalize(pokemon.name)}</Title>
               <PokemonTypes types={pokemon.types} />

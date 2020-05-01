@@ -21,6 +21,7 @@ import PokemonTypes from '../../components/PokemonTypes'
 import EvolutionTree from './components/EvolutionTree'
 import PokemonEvolvesTo from "../../dataObjects/PokemonEvolvesTo"
 import Varieties from './components/Varieties'
+import PokemonImage from '../../components/PokemonImage'
 
 const Pokemon = ({ match: { params } }) => {
 
@@ -123,10 +124,7 @@ const Pokemon = ({ match: { params } }) => {
             <div>
               <Profile>
                 <ImageContainer>
-                  {
-                    pokemon.sprites.front_default &&
-                    <img src={pokemon.sprites.front_default} alt="Pokemon" />
-                  }
+                  <PokemonImage url={pokemon.sprites.front_default} />
                 </ImageContainer>
 
                 <div>
