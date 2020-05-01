@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react"
+import InfiniteScroll from "react-infinite-scroller"
+import { useQueryParam, StringParam } from 'use-query-params'
+
 import LoadingIcon from "../../components/LoadingIcon"
 import Filters from "./components/Filters"
 import PokemonCard from "./components/PokemonCard/"
-import InfiniteScroll from "react-infinite-scroller"
 import {
   PokemonsContainers,
   LoadingIconContainer
@@ -16,6 +18,7 @@ const ListPokemons = () => {
   const [isFetching, setIsFetching] = useState(false)
 
   const [typeOptionSelected, setTypeOptionSelected] = useState(null)
+  const [type, setType] = useQueryParam('type', StringParam)
 
   const [fetchPokemonsUrl, setFetchPokemonsUrl] = useState(URL)
 
@@ -81,7 +84,8 @@ const ListPokemons = () => {
     <>
       <Filters
         typeOptionSelected={typeOptionSelected}
-        setTypeOptionSelected={setTypeOptionSelected} />
+        setTypeOptionSelected={setTypeOptionSelected}
+        type={type} setType={setType} />
 
       {
         pokemons.length > 0 && (

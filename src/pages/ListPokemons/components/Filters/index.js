@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import Select from 'react-select'
+
+
 import PropTypes from "prop-types"
 import { capitalize } from "../../../../helpers/stringHelper"
 import Label from "../../../../components/Label"
 import { FiltersContainer, FilterTypeContainer } from "./styles"
 
-const Filters = ({ typeOptionSelected, setTypeOptionSelected }) => {
+const Filters = ({ typeOptionSelected, setTypeOptionSelected, type, setType }) => {
   const [typeOptions, setTypeOptions] = useState([])
 
   useEffect(() => {
@@ -14,6 +16,19 @@ const Filters = ({ typeOptionSelected, setTypeOptionSelected }) => {
       .then((data) => setTypeOptions([...data.results]))
 
   }, [])
+
+  useEffect(() => {
+    if (!typeOptions) {
+      return
+    }
+
+    setTypeOptionSelected(typeOptions.find(opt => opt.name === type))
+  }, [typeOptions])
+
+  const handleTypeChange = (selected) => {
+    setTypeOptionSelected(selected)
+    setType(selected ? selected.name : selected)
+  }
 
   return (
     <FiltersContainer>
@@ -26,7 +41,7 @@ const Filters = ({ typeOptionSelected, setTypeOptionSelected }) => {
           isClearable={true}
           loadingMessage={() => "Carregando..."}
           value={typeOptionSelected}
-          onChange={selected => setTypeOptionSelected(selected)}
+          onChange={handleTypeChange}
           name="technicianSelected"
           options={typeOptions}
           getOptionValue={option => option['url']}
@@ -39,6 +54,8 @@ const Filters = ({ typeOptionSelected, setTypeOptionSelected }) => {
 Filters.propTypes = {
   typeOptionSelected: PropTypes.object,
   setTypeOptionSelected: PropTypes.func.isRequired,
+  type: PropTypes.string.isRequired,
+  setType: PropTypes.func.isRequired,
 }
 
 
