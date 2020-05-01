@@ -23,7 +23,7 @@ const Filters = ({ typeOptionSelected, setTypeOptionSelected, type, setType }) =
     }
 
     setTypeOptionSelected(typeOptions.find(opt => opt.name === type))
-  }, [typeOptions])
+  }, [typeOptions, setTypeOptionSelected, type])
 
   const handleTypeChange = (selected) => {
     setTypeOptionSelected(selected)
