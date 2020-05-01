@@ -10,6 +10,7 @@
     "@testing-library/user-event": "^7.1.2",
     "gh-pages": "^2.2.0",
     "indefinite": "^2.3.2",
+    "query-string": "^6.12.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-icons": "^3.9.0",
@@ -18,7 +19,8 @@
     "react-scripts": "3.4.1",
     "react-select": "^3.1.0",
     "styled-components": "^5.0.1",
-    "styled-reset": "^4.1.2"
+    "styled-reset": "^4.1.2",
+    "use-query-params": "^1.1.2"
   },
   "scripts": {
     "predeploy": "yarn run build",
