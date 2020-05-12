@@ -8,6 +8,7 @@ import {
   ImageContainer,
   GraphContainer,
   Profile,
+  DescriptionContainer,
   Section,
   Genera,
   HeightWeightContainer,
@@ -22,6 +23,7 @@ import EvolutionTree from './components/EvolutionTree'
 import PokemonEvolvesTo from "../../dataObjects/PokemonEvolvesTo"
 import Varieties from './components/Varieties'
 import PokemonImage from '../../components/PokemonImage'
+import abbreviatedStatName from '../../helpers/statNameHelper'
 
 const Pokemon = ({ match: { params } }) => {
 
@@ -86,7 +88,10 @@ const Pokemon = ({ match: { params } }) => {
 
   const statsData = () => {
     return pokemon.stats.map(({ base_stat, stat: { name } }) => {
-      return { baseStat: base_stat, name: capitalize(name) }
+      const statName = abbreviatedStatName(name)
+      const upperCaseStatName = statName.toUpperCase()
+
+      return { baseStat: base_stat, name: upperCaseStatName }
     })
   }
 
@@ -118,8 +123,6 @@ const Pokemon = ({ match: { params } }) => {
       {
         pokemon && pokemonSpecies &&
         <>
-
-
           <ProfileContainer>
             <div>
               <Profile>
@@ -127,7 +130,7 @@ const Pokemon = ({ match: { params } }) => {
                   <PokemonImage url={pokemon.sprites.front_default} />
                 </ImageContainer>
 
-                <div>
+                <DescriptionContainer>
                   <Title>
                     <span>
                       {capitalize(pokemon.name)}&nbsp;
@@ -151,9 +154,7 @@ const Pokemon = ({ match: { params } }) => {
                       {weight()}
                     </div>
                   </HeightWeightContainer>
-
-
-                </div>
+                </DescriptionContainer>
               </Profile>
             </div>
           </ProfileContainer>
@@ -178,11 +179,13 @@ const Pokemon = ({ match: { params } }) => {
             <EvolutionTree evolutionChain={evolutionChain} />
           }
 
-          <Section>
-            Varieties
-          </Section>
-
-          <Varieties varieties={pokemonVarieties()} />
+          {
+            pokemonVarieties().length > 0 &&
+            <>
+              <Section>Varieties</Section>
+              <Varieties varieties={pokemonVarieties()} />
+            </>
+          }
         </>
       }
 

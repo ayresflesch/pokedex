@@ -34,6 +34,7 @@ const PokemonCard = ({ url }) => {
               <Number>#{pokemon.id}</Number>
               <ImageContainer>
                 <PokemonImage url={pokemon.sprites.front_default} />
+                {/* <PokemonImage url={`https://img.pokemondb.net/artwork/${pokemon.name.replace('alola', 'alolan')}.jpg`} /> */}
               </ImageContainer>
               <Title>{capitalize(pokemon.name)}</Title>
               <PokemonTypes types={pokemon.types} />
