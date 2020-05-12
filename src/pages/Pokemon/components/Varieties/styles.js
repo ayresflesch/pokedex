@@ -8,6 +8,10 @@ export const VarietiesRow = styled.div`
   a { 
     text-decoration: none;
   }
+
+  @media (max-width: 600px) {
+    display: block;
+  }
 `
 
 export const IconContainer = styled.div`

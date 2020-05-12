@@ -12,7 +12,7 @@ const isLastPokemon = (index, chain) => {
 
 const EvolutionTree = ({ evolutionChain }) => {
   return (
-    <>
+    <div>
       {
         evolutionChain &&
         evolutionChain.map((chain, index) => (
@@ -35,7 +35,7 @@ const EvolutionTree = ({ evolutionChain }) => {
           </EvolutionRow>
         ))
       }
-    </>
+    </div>
   )
 }
 

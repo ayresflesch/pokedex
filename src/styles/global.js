@@ -6,6 +6,12 @@ export const Global = createGlobalStyle`
   ${reset}
   ${colors}
   
+  * { 
+    -moz-box-sizing: border-box; 
+    -webkit-box-sizing: border-box; 
+    box-sizing: border-box; 
+  }
+
   body {
     font: 400 14px Roboto, sans-serif;
     background: var(--grey-200); 
