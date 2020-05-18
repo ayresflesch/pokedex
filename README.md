@@ -5,8 +5,12 @@ Live project: https://ayresflesch.github.io/pokedex/
 
 ### Installing
 
-To get a development env running run the command below and access http://localhost:3000
+First, install the dependencies: 
+```
+$ yarn install
+```
 
+Then start the development server on http://localhost:3000
 ```
 $ yarn start
 ```
