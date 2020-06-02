@@ -6,11 +6,11 @@ import { Link } from "react-router-dom"
 import Evolution from '../Evolution'
 import { EvolutionRow, IconContainer } from './styles'
 
-const isLastPokemon = (index, chain) => {
-  return index !== chain.length - 1
-}
-
 const EvolutionTree = ({ evolutionChain }) => {
+  const isLastPokemon = (index, chain) => {
+    return index !== chain.length - 1
+  }
+
   return (
     <div>
       {

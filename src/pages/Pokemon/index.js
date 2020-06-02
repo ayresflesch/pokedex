@@ -1,195 +1,23 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React from 'react'
 import PropTypes from "prop-types"
-import {
-  PokemonContainer,
-  Title,
-  Number,
-  ProfileContainer,
-  ImageContainer,
-  GraphContainer,
-  Profile,
-  DescriptionContainer,
-  Section,
-  Genera,
-  HeightWeightContainer,
-  Height,
-  HeightWeightLabel
-} from "./styles"
+import { PokemonContainer, } from "./styles"
 
-import { capitalize } from "../../helpers/stringHelper"
-import StatsRadar from "./components/StatsRadar"
-import PokemonTypes from '../../components/PokemonTypes'
-import EvolutionTree from './components/EvolutionTree'
-import PokemonEvolvesTo from "../../dataObjects/PokemonEvolvesTo"
-import Varieties from './components/Varieties'
-import PokemonImage from '../../components/PokemonImage'
-import abbreviatedStatName from '../../helpers/statNameHelper'
+import Profile from './components/Profile'
+import GraphSection from './components/GraphSection'
+import VarietiesSection from './components/VarietiesSection'
+import EvolutionTreeSection from './components/EvolutionTreeSection'
+import PokemonProvider from './provider/PokemonProvider'
 
 const Pokemon = ({ match: { params } }) => {
-
-  const [pokemon, setPokemon] = useState(null)
-  const [pokemonSpecies, setPokemonSpecies] = useState(null)
-  const [evolutionChain, setEvolutionChain] = useState(null)
-
-  useEffect(() => {
-    fetch(`https://pokeapi.co/api/v2/pokemon/${params.id}`)
-      .then((response) => response.json())
-      .then((data) => setPokemon(data))
-  }, [params.id])
-
-  useEffect(() => {
-    if (!pokemon) {
-      return
-    }
-
-    fetch(pokemon.species.url)
-      .then((response) => response.json())
-      .then(pokemonSpecies => {
-        setPokemonSpecies(pokemonSpecies)
-      })
-
-  }, [pokemon])
-
-  const traverseEvolutionChain = useCallback(evolutionChain => {
-    const evolutionChainFormatted = new PokemonEvolvesTo(evolutionChain)
-
-    const onlyLastEvolution = evolutionChainFormatted.getEvolvesTo().length ?
-      [] :
-      [[evolutionChainFormatted]]
-
-    return onlyLastEvolution.concat(
-      ...evolutionChainFormatted.getEvolvesTo().map(nextEvolution => {
-
-        nextEvolution = { ...nextEvolution, evolvesFrom: evolutionChainFormatted.getName() }
-
-        return traverseEvolutionChain(nextEvolution).map(arr =>
-          [evolutionChainFormatted].concat(arr)
-        )
-      })
-    )
-  }, [])
-
-  useEffect(() => {
-    if (!pokemonSpecies) {
-      return
-    }
-
-    fetch(pokemonSpecies.evolution_chain.url)
-      .then((response) => response.json())
-      .then(({ chain }) => {
-        const evolutionChain = traverseEvolutionChain(chain)
-        setEvolutionChain(evolutionChain)
-      })
-  }, [pokemonSpecies, traverseEvolutionChain])
-
-  const genera = () => {
-    return pokemonSpecies.genera.find(genus => genus.language.name === 'en').genus
-  }
-
-  const statsData = () => {
-    return pokemon.stats.map(({ base_stat, stat: { name } }) => {
-      const statName = abbreviatedStatName(name)
-      const upperCaseStatName = statName.toUpperCase()
-
-      return { baseStat: base_stat, name: upperCaseStatName }
-    })
-  }
-
-  const pokemonVarieties = () => {
-    return pokemonSpecies.varieties.filter(v => !v.is_default)
-  }
-
-  const height = () => {
-    const height = pokemon.height / 10
-
-    return new Intl.NumberFormat("pt-BR", {
-      style: 'unit',
-      unit: "meter"
-    }).format(height)
-  }
-
-  const weight = () => {
-    const weight = pokemon.weight / 10
-
-    return new Intl.NumberFormat("pt-BR", {
-      style: 'unit',
-      unit: "kilogram"
-    }).format(weight)
-  }
-
   return (
-    <PokemonContainer>
-
-      {
-        pokemon && pokemonSpecies &&
-        <>
-          <ProfileContainer>
-            <div>
-              <Profile>
-                <ImageContainer>
-                  <PokemonImage url={pokemon.sprites.front_default} />
-                </ImageContainer>
-
-                <DescriptionContainer>
-                  <Title>
-                    <span>
-                      {capitalize(pokemon.name)}&nbsp;
-                    </span>
-                    <Number>#{pokemon.id}</Number>
-                  </Title>
-                  <Genera>
-                    {genera()}
-                  </Genera>
-                  <PokemonTypes
-                    alignLeft
-                    marginBottom={'8px'}
-                    types={pokemon.types} />
-                  <HeightWeightContainer>
-                    <Height>
-                      <HeightWeightLabel>Height: </HeightWeightLabel>
-                      {height()}
-                    </Height>
-                    <div>
-                      <HeightWeightLabel>Weight: </HeightWeightLabel>
-                      {weight()}
-                    </div>
-                  </HeightWeightContainer>
-                </DescriptionContainer>
-              </Profile>
-            </div>
-          </ProfileContainer>
-
-          <Section>
-            Stats
-          </Section>
-
-          <GraphContainer>
-            <StatsRadar
-              data={statsData()}
-              keys={['baseStat']}
-            />
-          </GraphContainer>
-
-          <Section>
-            Evolution
-          </Section>
-
-          {
-            evolutionChain &&
-            <EvolutionTree evolutionChain={evolutionChain} />
-          }
-
-          {
-            pokemonVarieties().length > 0 &&
-            <>
-              <Section>Varieties</Section>
-              <Varieties varieties={pokemonVarieties()} />
-            </>
-          }
-        </>
-      }
-
-    </PokemonContainer>
+    <PokemonProvider pokemonId={params.id}>
+      <PokemonContainer>
+        <Profile />
+        <GraphSection />
+        <EvolutionTreeSection />
+        <VarietiesSection />
+      </PokemonContainer>
+    </PokemonProvider>
   )
 }
 
