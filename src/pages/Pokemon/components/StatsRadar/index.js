@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import PropTypes from "prop-types"
 import { ResponsiveRadar } from '@nivo/radar'
+import { ThemeContext } from 'styled-components'
 
 const StatsRadar = ({ data, keys }) => {
+
+  const theme = useContext(ThemeContext)
+
   return (
     <ResponsiveRadar
       data={data}
@@ -12,7 +16,7 @@ const StatsRadar = ({ data, keys }) => {
       margin={{ top: 40, right: 40, bottom: 40, left: 40 }}
       curve="linearClosed"
       borderWidth={0}
-      borderColor={{ from: 'color' }}
+      borderColor={theme.secondaryText}
       gridLevels={3}
       gridShape="linear"
       gridLabelOffset={24}
@@ -25,7 +29,7 @@ const StatsRadar = ({ data, keys }) => {
       dotLabel="value"
       dotLabelYOffset={-12}
       colors={{ scheme: 'category10' }}
-      fillOpacity={0.25}
+      fillOpacity={theme.radarOpacity}
       blendMode="multiply"
       animate={true}
       motionStiffness={90}
@@ -38,12 +42,14 @@ const StatsRadar = ({ data, keys }) => {
               text: {
                 fontSize: '14px',
                 fontWeight: 'bold',
+                fill: theme.primaryText
               }
             },
           },
           dots: {
             text: {
-              fontSize: 14
+              fontSize: 14,
+              fill: theme.primaryText
             }
           }
         }

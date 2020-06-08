@@ -9,6 +9,7 @@ import {
   PokemonsContainers,
   LoadingIconContainer
 } from "./styles"
+import Header from "../../components/Header"
 
 const URL = "https://pokeapi.co/api/v2/pokemon"
 
@@ -82,6 +83,8 @@ const ListPokemons = () => {
 
   return (
     <>
+      <Header />
+
       <Filters
         typeOptionSelected={typeOptionSelected}
         setTypeOptionSelected={setTypeOptionSelected}

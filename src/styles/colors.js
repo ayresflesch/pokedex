@@ -11,6 +11,9 @@ const colors = css`
     --grey-700: #4A5568;
     --grey-800: #2D3748;
     --grey-900: #1A202C;
+
+    --blue-400: #63B3ED;
+    --blue-600: #3182CE;
   }
 `
 
