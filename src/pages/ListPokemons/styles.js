@@ -7,7 +7,7 @@ export const PokemonsContainers = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
   grid-gap: 24px;
-  padding: 24px;
+  margin-bottom: 24px;
 `
 
 export const LoadingIconContainer = styled.div`

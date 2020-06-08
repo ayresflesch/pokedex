@@ -12,7 +12,7 @@ export const EvolutionRow = styled.div`
   @media (max-width: 600px) {
     display: block;
     &:not(:last-child) { 
-      border-bottom: 1px solid var(--grey-300);
+      border-bottom: 1px solid ${({ theme }) => theme.separator};
       padding-bottom: 16px;
       margin-bottom: 0;
     }
@@ -22,7 +22,7 @@ export const EvolutionRow = styled.div`
 export const IconContainer = styled.div`
   align-self: center;
   font-size: 20px;
-  color: var(--grey-600);
+  color: ${({ theme }) => theme.secondaryText};
   line-height: 1;
 
   @media (max-width: 600px) {

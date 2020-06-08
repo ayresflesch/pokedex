@@ -6,11 +6,11 @@ export const PokemonContainer = styled.div`
 
 export const Name = styled.div`
   font-weight: 500;
-  color: var(--grey-800);
+  color: ${({ theme }) => theme.primaryText};
 `
 
 export const Description = styled.div`
-  color: var(--grey-700);
+  color: ${({ theme }) => theme.secondaryText};
   max-width: 250px;
 
   @media (max-width: 600px) {

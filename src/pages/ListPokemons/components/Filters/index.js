@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Select from 'react-select'
 
-
 import PropTypes from "prop-types"
 import { capitalize } from "../../../../helpers/stringHelper"
 import Label from "../../../../components/Label"
@@ -42,7 +41,6 @@ const Filters = ({ typeOptionSelected, setTypeOptionSelected, type, setType }) =
           loadingMessage={() => "Carregando..."}
           value={typeOptionSelected}
           onChange={handleTypeChange}
-          name="technicianSelected"
           options={typeOptions}
           getOptionValue={option => option['url']}
           getOptionLabel={option => capitalize(option['name'])} />
@@ -54,9 +52,8 @@ const Filters = ({ typeOptionSelected, setTypeOptionSelected, type, setType }) =
 Filters.propTypes = {
   typeOptionSelected: PropTypes.object,
   setTypeOptionSelected: PropTypes.func.isRequired,
-  type: PropTypes.string.isRequired,
+  type: PropTypes.string,
   setType: PropTypes.func.isRequired,
 }
-
 
 export default Filters

@@ -14,7 +14,7 @@ export const Global = createGlobalStyle`
 
   body {
     font: 400 14px Roboto, sans-serif;
-    background: var(--grey-200); 
+    background: ${({ theme }) => theme.pageBgColor};
     -webkit-font-smoothing: antialiased;
   }
 `
