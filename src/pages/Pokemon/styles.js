@@ -4,7 +4,7 @@ export const PokemonContainer = styled.div`
   min-height: 50vh;
   width: 50vw;
   border-radius: 10px;
-  background: #fff;
+  background: ${({ theme }) => theme.cardBgColor};
 
   margin: 0 auto;
   margin-top: 36px;

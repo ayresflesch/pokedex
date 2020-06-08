@@ -2,7 +2,7 @@ import styled from "styled-components"
 
 export const CardContainer = styled.div`
   min-height: 176px; 
-  background: white;
+  background: ${({ theme }) => theme.cardBgColor};
   border-radius: 10px;
   padding: 16px;
   text-align: center;
@@ -13,6 +13,7 @@ export const CardContainer = styled.div`
 
   &:hover {
     box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.25);
+    background: ${({ theme }) => theme.cardBgColorHover};
   }
 
   a { 
@@ -33,7 +34,7 @@ export const ImageContainer = styled.div`
 export const Title = styled.div`
   font-size: 18px;
   font-weight: 700;
-  color: var(--grey-800);
+  color: ${({ theme }) => theme.primaryText};
   margin-bottom: 16px;
 `
 

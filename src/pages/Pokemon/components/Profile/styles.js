@@ -3,7 +3,7 @@ import styled from "styled-components"
 export const Title = styled.div`
   font-size: 36px;
   font-weight: 500;
-  color: var(--grey-800);
+  color: ${({ theme }) => theme.primaryText};
   line-height: 1;
   margin-bottom: 4px;
   
@@ -13,7 +13,7 @@ export const Title = styled.div`
 `
 
 export const Number = styled.span`
-  color: var(--grey-600);
+  color: ${({ theme }) => theme.secondaryText};
   font-size: 24px;
 
   @media (max-width: 600px) {
@@ -23,7 +23,7 @@ export const Number = styled.span`
 
 export const Genera = styled.div`
   font-size: 18px;
-  color: var(--grey-600);
+  color: ${({ theme }) => theme.secondaryText};
   margin-bottom: 8px;
 
   @media (max-width: 600px) {
@@ -53,7 +53,7 @@ export const DescriptionContainer = styled.div`
 
 export const ImageContainer = styled.div`
   padding: 16px;
-  box-shadow: inset 0 0px 2px 1px rgb(0, 0, 0, 0.15);
+  box-shadow: inset 0 0px 2px 1px ${({ theme }) => theme.imageBoxShadow};
   align-self: center;
   border-radius: 100%;
   margin-right: 16px;
@@ -66,11 +66,11 @@ export const ImageContainer = styled.div`
 
 export const HeightWeightContainer = styled.div`
   display: flex;
-  color: var(--grey-800);
+  color: ${({ theme }) => theme.primaryText};
 `
 
 export const HeightWeightLabel = styled.span`
-  color: var(--grey-600);
+  color: ${({ theme }) => theme.secondaryText};
 `
 
 export const Height = styled.div`
