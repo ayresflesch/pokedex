@@ -2,7 +2,7 @@ import styled from "styled-components"
 
 export const FiltersContainer = styled.div`
   width: 75vw;
-  margin: 36px auto 24px auto;
+  margin: 24px auto;
 `
 
 export const FilterTypeContainer = styled.div`
