@@ -12,6 +12,12 @@ const useDarkMode = () => {
     setTheme(themes[newTheme])
   }
 
+  const isDarkTheme = () => {
+    console.log(theme !== light)
+
+    return theme !== light
+  }
+
   useEffect(() => {
     const localTheme = window.localStorage.getItem('theme')
 
@@ -20,7 +26,7 @@ const useDarkMode = () => {
     }
   }, [])
 
-  return { theme, toggleTheme }
+  return { theme, isDarkTheme, toggleTheme }
 }
 
 export default useDarkMode

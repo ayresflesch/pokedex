@@ -1,13 +1,17 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import Select from 'react-select'
 
 import PropTypes from "prop-types"
 import { capitalize } from "../../../../helpers/stringHelper"
 import Label from "../../../../components/Label"
 import { FiltersContainer, FilterTypeContainer } from "./styles"
+import { ThemeContextWrapper } from '../../../../providers/ThemeProviderWrapper'
+import reactSelectDarkTheme from '../../../../styles/react-select-dark-theme'
 
 const Filters = ({ typeOptionSelected, setTypeOptionSelected, type, setType }) => {
+
   const [typeOptions, setTypeOptions] = useState([])
+  const { isDarkTheme } = useContext(ThemeContextWrapper)
 
   useEffect(() => {
     fetch('https://pokeapi.co/api/v2/type')
@@ -43,7 +47,9 @@ const Filters = ({ typeOptionSelected, setTypeOptionSelected, type, setType }) =
           onChange={handleTypeChange}
           options={typeOptions}
           getOptionValue={option => option['url']}
-          getOptionLabel={option => capitalize(option['name'])} />
+          getOptionLabel={option => capitalize(option['name'])}
+          styles={isDarkTheme() ? reactSelectDarkTheme : {}}
+        />
       </FilterTypeContainer>
     </FiltersContainer>
   )

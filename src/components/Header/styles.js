@@ -2,7 +2,7 @@ import styled, { createGlobalStyle } from "styled-components"
 
 export const HeaderContainer = styled.header`
   height: 36px;
-  background: var(--grey-600);
+  background: ${({ theme }) => theme.headerBg};
 `
 
 export const HeaderWrapper = styled.div`
