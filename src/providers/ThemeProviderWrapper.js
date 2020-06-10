@@ -7,10 +7,10 @@ export const ThemeContextWrapper = React.createContext()
 
 const ThemeProviderWrapper = ({ children }) => {
 
-  const { theme, toggleTheme } = useDarkMode()
+  const { theme, isDarkTheme, toggleTheme } = useDarkMode()
 
   return (
-    <ThemeContextWrapper.Provider value={{ theme, toggleTheme }}>
+    <ThemeContextWrapper.Provider value={{ theme, isDarkTheme, toggleTheme }}>
       <ThemeProvider theme={theme}>
         {children}
       </ThemeProvider>
