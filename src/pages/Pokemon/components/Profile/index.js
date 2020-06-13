@@ -27,20 +27,16 @@ const Profile = () => {
 
   const height = () => {
     const height = pokemon.height / 10
+    const heightFormatted = new Intl.NumberFormat("pt-BR").format(height)
 
-    return new Intl.NumberFormat("pt-BR", {
-      style: 'unit',
-      unit: "meter"
-    }).format(height)
+    return `${heightFormatted} m`
   }
 
   const weight = () => {
     const weight = pokemon.weight / 10
+    const weightFormatted = new Intl.NumberFormat("pt-BR").format(weight)
 
-    return new Intl.NumberFormat("pt-BR", {
-      style: 'unit',
-      unit: "kilogram"
-    }).format(weight)
+    return `${weightFormatted} kg`
   }
 
   return (

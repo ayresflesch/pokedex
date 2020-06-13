@@ -13,8 +13,6 @@ const useDarkMode = () => {
   }
 
   const isDarkTheme = () => {
-    console.log(theme !== light)
-
     return theme !== light
   }
 
