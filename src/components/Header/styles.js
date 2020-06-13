@@ -9,15 +9,29 @@ export const HeaderWrapper = styled.div`
   height: 100%;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
   width: 75vw;
   margin: 0 auto;
   color: ${({ theme }) => theme.primaryText};
   font-size: 18px;
+
+  a {
+    color: ${({ theme }) => theme.primaryText};
+  }
 `
 
 export const IconContainer = styled.div`
   margin: 0 8px;
+`
+
+export const ArrowContainer = styled.div`
+  font-size: 26px;
+  line-height: 1;
+`
+
+export const ToggleContainer = styled.div`
+  display: flex;
+  align-items: center;
 `
 
 export const ToggleCustomStyle = createGlobalStyle`
