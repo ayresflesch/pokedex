@@ -1,7 +1,7 @@
 # Pokedex
 This is a Pokedex using the API https://pokeapi.co/
 
-Live project: https://ayresflesch.github.io/pokedex/
+Live project: https://pokedexwebapp.netlify.app
 
 ### Installing
 
