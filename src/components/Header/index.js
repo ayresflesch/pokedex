@@ -23,12 +23,8 @@ const Header = () => {
   const location = useLocation()
 
   const isNotIndex = () => {
-    console.log(location.pathname !== "/")
-    console.log(location)
-
     return location.pathname !== "/"
   }
-
 
   return (
     <HeaderContainer>
