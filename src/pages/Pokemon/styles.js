@@ -3,7 +3,7 @@ import styled from "styled-components"
 export const PokemonContainer = styled.div`
   display: flex;
   margin: 24px auto;
-  width: 1200px;
+  max-width: 1200px;
 `
 
 export const ProfileContainer = styled.div`
