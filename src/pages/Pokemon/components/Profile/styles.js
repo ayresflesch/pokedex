@@ -32,14 +32,11 @@ export const Genera = styled.div`
 `
 
 export const ProfileContainer = styled.div`
-  display: flex;
-  margin-bottom: 36px;
-
-  @media (max-width: 600px) {
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-  }
+  background: ${({ theme }) => theme.cardBgColor};
+  padding: 16px;
+  text-align: center;
+  border-radius: 10px;
+  width: 300px;
 `
 
 export const DescriptionContainer = styled.div`
@@ -53,10 +50,8 @@ export const DescriptionContainer = styled.div`
 
 export const ImageContainer = styled.div`
   padding: 16px;
-  box-shadow: inset 0 0px 2px 1px ${({ theme }) => theme.imageBoxShadow};
   align-self: center;
   border-radius: 100%;
-  margin-right: 16px;
   
   @media (max-width: 600px) {
     margin-right: 0px;
@@ -66,6 +61,7 @@ export const ImageContainer = styled.div`
 
 export const HeightWeightContainer = styled.div`
   display: flex;
+  justify-content: center;
   color: ${({ theme }) => theme.primaryText};
 `
 

@@ -1,18 +1,20 @@
 import styled from "styled-components"
 
 export const PokemonContainer = styled.div`
-  min-height: 50vh;
-  width: 50vw;
-  border-radius: 10px;
-  background: ${({ theme }) => theme.cardBgColor};
+  display: flex;
+  margin: 24px auto;
+  width: 1200px;
+`
 
-  margin: 0 auto;
-  margin-top: 36px;
-  padding: 24px; 
-  
-  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.25);
+export const ProfileContainer = styled.div`
+  margin-right: 24px;
+`
 
-  @media (max-width: 992px) {
-    width: 95vw;
-  }
+export const GeneralDataContainer = styled.div`
+  flex: 1;
+`
+
+export const StatVarietyContainer = styled.div`
+  display: flex;
+  margin-bottom: 24px;
 `
