@@ -52,11 +52,6 @@ export const ImageContainer = styled.div`
   padding: 16px;
   align-self: center;
   border-radius: 100%;
-  
-  @media (max-width: 600px) {
-    margin-right: 0px;
-    margin-bottom: 16px;
-  }
 `
 
 export const HeightWeightContainer = styled.div`
