@@ -36,7 +36,7 @@ export const ProfileContainer = styled.div`
   padding: 16px;
   text-align: center;
   border-radius: 10px;
-  width: 300px;
+  grid-area: profile;
 `
 
 export const DescriptionContainer = styled.div`

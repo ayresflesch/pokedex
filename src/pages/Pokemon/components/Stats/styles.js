@@ -5,7 +5,7 @@ export const ProgressBarContainer = styled.div`
   background: ${({ theme }) => theme.cardBgColor};
   padding: 16px;
   border-radius: 10px;
-  margin-right: 24px;
+  grid-area: stats;
 
   & > div:not(:last-child) {
     margin-bottom: 8px; 

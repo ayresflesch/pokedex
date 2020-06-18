@@ -1,10 +1,7 @@
 import React from 'react'
 import PropTypes from "prop-types"
 import {
-  PokemonContainer,
-  ProfileContainer,
-  GeneralDataContainer,
-  StatVarietyContainer
+  PokemonContainer
 } from "./styles"
 
 import Profile from './components/Profile'
@@ -19,17 +16,10 @@ const Pokemon = ({ match: { params } }) => {
     <PokemonProvider pokemonId={params.id}>
       <Header />
       <PokemonContainer>
-        <ProfileContainer>
-          <Profile />
-        </ProfileContainer>
-
-        <GeneralDataContainer>
-          <StatVarietyContainer>
-            <Stats />
-            <VarietiesSection />
-          </StatVarietyContainer>
-          <EvolutionTreeSection />
-        </GeneralDataContainer>
+        <Profile />
+        <Stats />
+        <VarietiesSection />
+        <EvolutionTreeSection />
       </PokemonContainer>
     </PokemonProvider>
   )
