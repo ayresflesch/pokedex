@@ -7,8 +7,7 @@ const themes = {
     primaryText: 'var(--grey-800)',
     secondaryText: 'var(--grey-600)',
     separator: 'var(--grey-300)',
-    imageBoxShadow: 'rgb(0, 0, 0, 0.15)',
-    radarOpacity: 0.25
+    progressContainer: 'var(--grey-300)'
   },
   dark: {
     pageBgColor: 'var(--grey-900)',
@@ -18,8 +17,7 @@ const themes = {
     primaryText: 'var(--grey-200)',
     secondaryText: 'var(--grey-400)',
     separator: 'var(--grey-700)',
-    imageBoxShadow: 'rgb(255, 255, 255, 0.15)',
-    radarOpacity: 0.75
+    progressContainer: 'var(--grey-700)'
   },
 }
 

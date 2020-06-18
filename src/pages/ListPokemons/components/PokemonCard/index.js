@@ -33,7 +33,9 @@ const PokemonCard = ({ url }) => {
             <Link to={`/pokemon/${pokemon.id}`}>
               <Number>#{pokemon.id}</Number>
               <ImageContainer>
-                <PokemonImage url={pokemon.sprites.front_default} />
+                <PokemonImage
+                  url={`https://pokeres.bastionbot.org/images/pokemon/${pokemon.id}.png`}
+                  fallbackUrl={pokemon.sprites.front_default} />
               </ImageContainer>
               <Title>{capitalize(pokemon.name)}</Title>
               <PokemonTypes types={pokemon.types} />

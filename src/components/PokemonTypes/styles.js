@@ -3,7 +3,7 @@ import styled from "styled-components"
 export const TypesContainer = styled.div`
   text-align: center;
   display: flex;
-  justify-content: ${props => props.alignLeft ? 'left' : "center"};
+  justify-content: center;
   margin-bottom: ${props => props.marginBottom ? props.marginBottom : "0px"};
 `
 

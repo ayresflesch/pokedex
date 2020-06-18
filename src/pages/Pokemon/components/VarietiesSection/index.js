@@ -3,6 +3,8 @@ import { PokemonContext } from '../../provider/PokemonProvider'
 import Varieties from '../Varieties'
 import Section from '../../../../components/Section'
 
+import { Container } from './styles'
+
 const VarietiesSection = () => {
 
   const { pokemonSpecies } = useContext(PokemonContext)
@@ -12,10 +14,10 @@ const VarietiesSection = () => {
   }
 
   return (
-    <>
+    <Container>
       <Section text={"Varieties"} />
       <Varieties varieties={pokemonVarieties()} />
-    </>
+    </Container>
   )
 }
 

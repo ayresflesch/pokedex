@@ -18,6 +18,7 @@ const Variety = ({ variety }) => {
       {
         pokemon &&
         <EvolutionDisplay
+          id={pokemon.id}
           imageUrl={pokemon.sprites.front_default}
           name={capitalize(pokemon.name)}
         />

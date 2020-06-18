@@ -4,10 +4,12 @@ import PropTypes from 'prop-types'
 import { PokemonContainer, Name, Description } from './styles'
 import PokemonImage from '../PokemonImage'
 
-const EvolutionDisplay = ({ imageUrl, name, evolutionTexts }) => {
+const EvolutionDisplay = ({ id, imageUrl, name, evolutionTexts }) => {
   return (
     <PokemonContainer>
-      <PokemonImage url={imageUrl} />
+      <PokemonImage
+        url={`https://pokeres.bastionbot.org/images/pokemon/${id}.png`}
+        fallbackUrl={imageUrl} />
       <Name>{name}</Name>
       <Description>
         {
@@ -22,6 +24,7 @@ const EvolutionDisplay = ({ imageUrl, name, evolutionTexts }) => {
 }
 
 EvolutionDisplay.propTypes = {
+  id: PropTypes.number,
   imageUrl: PropTypes.string,
   name: PropTypes.string.isRequired,
   evolutionTexts: PropTypes.array
