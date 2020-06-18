@@ -42,7 +42,9 @@ const Profile = () => {
   return (
     <ProfileContainer>
       <ImageContainer>
-        <PokemonImage url={pokemon.sprites.front_default} />
+        <PokemonImage
+          url={`https://pokeres.bastionbot.org/images/pokemon/${pokemon.id}.png`}
+          fallbackUrl={pokemon.sprites.front_default} />
       </ImageContainer>
 
       <DescriptionContainer>
@@ -56,7 +58,6 @@ const Profile = () => {
           {genera()}
         </Genera>
         <PokemonTypes
-          alignLeft
           marginBottom={'8px'}
           types={pokemon.types} />
         <HeightWeightContainer>
