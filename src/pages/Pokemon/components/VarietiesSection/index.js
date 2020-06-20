@@ -3,7 +3,7 @@ import { PokemonContext } from '../../provider/PokemonProvider'
 import Varieties from '../Varieties'
 import Section from '../../../../components/Section'
 
-import { Container } from './styles'
+import { Container, Header } from './styles'
 
 const VarietiesSection = () => {
 
@@ -15,7 +15,9 @@ const VarietiesSection = () => {
 
   return (
     <Container>
-      <Section text={"Varieties"} />
+      <Header>
+        <Section text={"Varieties"} />
+      </Header>
       <Varieties varieties={pokemonVarieties()} />
     </Container>
   )
