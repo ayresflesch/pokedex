@@ -14,6 +14,7 @@ const colors = css`
 
     --blue-400: #63B3ED;
     --blue-600: #3182CE;
+    --blue-700: #2B6CB0;
   }
 `
 

@@ -8,7 +8,7 @@ const PokemonImage = ({ url, fallbackUrl }) => {
     <>
       {
         fallbackUrl ?
-          <object style={{ width: '150px' }} data={url} type="image/png">
+          <object style={{ width: '100px' }} data={url} type="image/png">
             <img src={fallbackUrl} alt="Pokemon" />
           </object> :
           <EmptyImage src={process.env.PUBLIC_URL + '/empty-image.png'} alt="No Image" />
