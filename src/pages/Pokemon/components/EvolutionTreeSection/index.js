@@ -3,7 +3,7 @@ import { PokemonContext } from '../../provider/PokemonProvider'
 import EvolutionTree from '../EvolutionTree'
 import Section from '../../../../components/Section'
 
-import { Container } from './styles'
+import { Container, Header } from './styles'
 
 const EvolutionTreeSection = () => {
 
@@ -11,7 +11,9 @@ const EvolutionTreeSection = () => {
 
   return (
     <Container>
-      <Section text={"Evolution"} />
+      <Header>
+        <Section text={"Evolution"} />
+      </Header>
       <EvolutionTree evolutionChain={evolutionChain} />
     </Container>
   )

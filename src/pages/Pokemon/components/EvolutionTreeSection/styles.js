@@ -6,3 +6,7 @@ export const Container = styled.div`
   border-radius: 10px;
   grid-area: evolution;
 `
+
+export const Header = styled.header`
+  margin-bottom: 24px;
+`

@@ -8410,6 +8410,11 @@ pnp-webpack-plugin@1.6.4:
   dependencies:
     ts-pnp "^1.1.6"
 
+pokemon-stat-calculator@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/pokemon-stat-calculator/-/pokemon-stat-calculator-0.3.0.tgz#3c564bb3826cfaee51fec09291513832a01d4d05"
+  integrity sha1-PFZLs4Js+u5R/sCSkVE4MqAdTQU=
+
 portfinder@^1.0.25:
   version "1.0.25"
   resolved "https://registry.yarnpkg.com/portfinder/-/portfinder-1.0.25.tgz#254fd337ffba869f4b9d37edc298059cb4d35eca"
