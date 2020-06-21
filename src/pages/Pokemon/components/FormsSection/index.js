@@ -1,11 +1,11 @@
 import React, { useContext } from 'react'
 import { PokemonContext } from '../../provider/PokemonProvider'
-import Varieties from '../Varieties'
+import Forms from '../Forms'
 import Section from '../../../../components/Section'
 
 import { Container, Header } from './styles'
 
-const VarietiesSection = () => {
+const FormsSection = () => {
 
   const { pokemonSpecies } = useContext(PokemonContext)
 
@@ -16,11 +16,11 @@ const VarietiesSection = () => {
   return (
     <Container>
       <Header>
-        <Section text={"Varieties"} />
+        <Section text={"Forms"} />
       </Header>
-      <Varieties varieties={pokemonVarieties()} />
+      <Forms forms={pokemonVarieties()} />
     </Container>
   )
 }
 
-export default VarietiesSection
+export default FormsSection

@@ -9,8 +9,9 @@ export const PokemonContainer = styled.div`
   grid-gap: 24px;
   grid-template-columns: 300px 1fr 1fr;
   grid-template-areas:
-      "profile stats varieties"
-      "profile evolution evolution";
+      "profile stats . "
+      "profile evolution evolution"
+      "profile varieties varieties";
 
   @media (max-width: 860px) {
     grid-template-columns: 300px 1fr;

@@ -3,23 +3,22 @@ import PropTypes from 'prop-types'
 import EvolutionDisplay from '../../../../components/EvolutionDisplay'
 import { capitalize } from '../../../../helpers/stringHelper'
 
-const Variety = ({ variety }) => {
+const Form = ({ form }) => {
 
   const [pokemon, setPokemon] = useState(null)
 
   useEffect(() => {
-    fetch(variety.url)
+    fetch(form.url)
       .then((response) => response.json())
       .then((data) => setPokemon(data))
-  }, [variety])
+  }, [form])
 
   return (
     <>
       {
         pokemon &&
         <EvolutionDisplay
-          id={pokemon.id}
-          imageUrl={pokemon.sprites.front_default}
+          pokemon={pokemon}
           name={capitalize(pokemon.name)}
         />
       }
@@ -28,8 +27,8 @@ const Variety = ({ variety }) => {
   )
 }
 
-Variety.propTypes = {
-  variety: PropTypes.object.isRequired,
+Form.propTypes = {
+  form: PropTypes.object.isRequired,
 }
 
-export default Variety
+export default Form
