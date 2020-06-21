@@ -37,16 +37,22 @@ const Stats = () => {
       <Header>
         <Section text={'Stats'} />
         <StatsFilterContainer>
-          <StatsFilter onClick={() => toggleStat(StatsEnum.BASE)}>
-            <input type="radio" id="base" checked={statSelected === StatsEnum.BASE} />
+          <StatsFilter>
+            <input type="radio" id="base"
+              onChange={() => toggleStat(StatsEnum.BASE)}
+              checked={statSelected === StatsEnum.BASE} />
             <label htmlFor="base">Base</label>
           </StatsFilter>
-          <StatsFilter onClick={() => toggleStat(StatsEnum.MIN)}>
-            <input type="radio" id="min" checked={statSelected === StatsEnum.MIN} />
+          <StatsFilter >
+            <input type="radio" id="min"
+              onChange={() => toggleStat(StatsEnum.MIN)}
+              checked={statSelected === StatsEnum.MIN} />
             <label htmlFor="min">Min</label>
           </StatsFilter>
-          <StatsFilter onClick={() => toggleStat(StatsEnum.MAX)}>
-            <input type="radio" id="max" checked={statSelected === StatsEnum.MAX} />
+          <StatsFilter>
+            <input type="radio" id="max"
+              onChange={() => toggleStat(StatsEnum.MAX)}
+              checked={statSelected === StatsEnum.MAX} />
             <label htmlFor="max">Max</label>
           </StatsFilter>
         </StatsFilterContainer>
