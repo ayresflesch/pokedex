@@ -36,6 +36,7 @@ export const StatsFilter = styled.div`
   }
 
   & label {
+    cursor: pointer;
     font-weight: bold;
     display: block;
     padding: 6px 12px;

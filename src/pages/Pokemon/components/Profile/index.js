@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { PokemonContext } from '../../provider/PokemonProvider'
 
 import {
@@ -16,10 +16,15 @@ import {
 import { capitalize } from '../../../../helpers/stringHelper'
 import PokemonTypes from '../../../../components/PokemonTypes'
 import PokemonImage from '../../../../components/PokemonImage'
+import animateScrollTo from 'animated-scroll-to'
 
 const Profile = () => {
 
   const { pokemon, pokemonSpecies } = useContext(PokemonContext)
+
+  useEffect(() => {
+    animateScrollTo(0, { minDuration: 1000 })
+  }, [pokemon])
 
   const genera = () => {
     return pokemonSpecies.genera.find(genus => genus.language.name === 'en').genus

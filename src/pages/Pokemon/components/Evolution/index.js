@@ -40,8 +40,7 @@ const Evolution = ({ pokemonEvolutionNode }) => {
       {
         pokemon &&
         <EvolutionDisplay
-          id={pokemon.id}
-          imageUrl={pokemon.sprites.front_default}
+          pokemon={pokemon}
           name={pokemonsSpeciesName()}
           evolutionTexts={pokemonEvolutionNode.getEvolutionTexts()}
         />

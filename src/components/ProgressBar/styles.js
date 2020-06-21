@@ -26,4 +26,5 @@ export const Progress = styled.div`
   height: 8px;
   width: ${({ percentage }) => percentage}%;
   border-radius: 12px;
+  transition: 0.5s;
 `

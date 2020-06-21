@@ -5,7 +5,7 @@ import {
 } from "./styles"
 
 import Profile from './components/Profile'
-import VarietiesSection from './components/VarietiesSection'
+import FormsSection from './components/FormsSection'
 import EvolutionTreeSection from './components/EvolutionTreeSection'
 import PokemonProvider from './provider/PokemonProvider'
 import Header from '../../components/Header'
@@ -18,7 +18,7 @@ const Pokemon = ({ match: { params } }) => {
       <PokemonContainer>
         <Profile />
         <Stats />
-        <VarietiesSection />
+        <FormsSection />
         <EvolutionTreeSection />
       </PokemonContainer>
     </PokemonProvider>
