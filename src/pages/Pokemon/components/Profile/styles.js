@@ -40,6 +40,8 @@ export const ProfileContainer = styled.div`
 `
 
 export const DescriptionContainer = styled.div`
+  margin-bottom: 24px;
+
   @media (max-width: 600px) {
     & div {
       text-align: center;
@@ -54,17 +56,20 @@ export const ImageContainer = styled.div`
   border-radius: 100%;
 `
 
-export const HeightWeightContainer = styled.div`
-  display: flex;
-  justify-content: center;
+export const Characteristics = styled.div`
   color: ${({ theme }) => theme.primaryText};
+  text-align: left;
+  font-size: 16px;
 `
 
-export const HeightWeightLabel = styled.span`
-  color: ${({ theme }) => theme.secondaryText};
+export const Characteristic = styled.div`
+  margin-bottom: 16px;
 `
 
-export const Height = styled.div`
-  margin-right: 16px;
+export const CharacteristicsLabel = styled.div`
+  color: ${({ theme }) => theme.primaryText};
+  font-weight: bold;
+  margin-bottom: 4px;
 `
+
 
