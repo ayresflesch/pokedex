@@ -8,15 +8,16 @@ import {
   ImageContainer,
   DescriptionContainer,
   Genera,
-  HeightWeightContainer,
-  Height,
-  HeightWeightLabel
+  Characteristics,
+  Characteristic,
+  CharacteristicsLabel
 } from "./styles"
 
 import { capitalize } from '../../../../helpers/stringHelper'
 import PokemonTypes from '../../../../components/PokemonTypes'
 import PokemonImage from '../../../../components/PokemonImage'
 import animateScrollTo from 'animated-scroll-to'
+import { numberFormatted, metresToInchesString } from '../../../../helpers/numberHelper'
 
 const Profile = () => {
 
@@ -31,18 +32,25 @@ const Profile = () => {
   }
 
   const height = () => {
-    const height = pokemon.height / 10
-    const heightFormatted = new Intl.NumberFormat("pt-BR").format(height)
+    const heightInMetres = pokemon.height / 10
+    const heightInMetresFormatted = numberFormatted(heightInMetres)
+    const heightInInches = metresToInchesString(heightInMetres)
 
-    return `${heightFormatted} m`
+    return `${heightInMetresFormatted} m ( ${heightInInches} )`
   }
 
   const weight = () => {
-    const weight = pokemon.weight / 10
-    const weightFormatted = new Intl.NumberFormat("pt-BR").format(weight)
+    const weightInKg = pokemon.weight / 10
+    const weightInKgFormatted = numberFormatted(weightInKg)
+    const weightInLbsFormatted = numberFormatted(weightInKg * 2.205)
 
-    return `${weightFormatted} kg`
+    return `${weightInKgFormatted} kg ( ${weightInLbsFormatted} lbs. )`
   }
+
+  const abilities = () =>
+    pokemon.abilities.map(a =>
+      `${capitalize(a.ability.name)}${a.is_hidden ? ' (hidden)' : ''}`
+    ).join(', ')
 
   return (
     <ProfileContainer>
@@ -65,17 +73,21 @@ const Profile = () => {
         <PokemonTypes
           marginBottom={'8px'}
           types={pokemon.types} />
-        <HeightWeightContainer>
-          <Height>
-            <HeightWeightLabel>Height: </HeightWeightLabel>
-            {height()}
-          </Height>
-          <div>
-            <HeightWeightLabel>Weight: </HeightWeightLabel>
-            {weight()}
-          </div>
-        </HeightWeightContainer>
       </DescriptionContainer>
+      <Characteristics>
+        <Characteristic>
+          <CharacteristicsLabel>Height: </CharacteristicsLabel>
+          {height()}
+        </Characteristic>
+        <Characteristic>
+          <CharacteristicsLabel>Weight: </CharacteristicsLabel>
+          {weight()}
+        </Characteristic>
+        <Characteristic>
+          <CharacteristicsLabel>Abilitites: </CharacteristicsLabel>
+          {abilities()}
+        </Characteristic>
+      </Characteristics>
     </ProfileContainer>
   )
 }
